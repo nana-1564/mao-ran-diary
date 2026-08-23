@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>まお＆らんの猫日記</title>
+
+  <style>
+    /* ===== ページ全体のデザイン ===== */
+    body {
+      margin: 0;
+      font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+      background: #fff8f0;
+      color: #4a3b35;
+    }
+
+    header {
+      text-align: center;
+      padding: 45px 20px;
+      background: #f7d9c4;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 42px;
+    }
+
+    header p {
+      font-size: 18px;
+    }
+
+    /* ===== 猫プロフィール ===== */
+    .cats {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      padding: 40px 20px;
+    }
+
+    .cat-card {
+      width: 320px;
+      background: white;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.12);
+      text-align: center;
+    }
+
+    .cat-photo {
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+      border-radius: 15px;
+      background: #eee;
+    }
+
+    .cat-card h2 {
+      color: #a85d3d;
+    }
+
+    .cat-card button {
+      border: none;
+      border-radius: 20px;
+      padding: 10px 20px;
+      background: #e9a77d;
+      color: white;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    .cat-card button:hover {
+      opacity: 0.8;
+    }
+
+    .details {
+      display: none;
+      text-align: left;
+      margin-top: 15px;
+      padding: 15px;
+      background: #fff3ea;
+      border-radius: 12px;
+    }
+
+    .details p {
+      display: flex;
+      align-items: flex-start;
+      line-height: 1.6;
+    }
+
+    .details p strong {
+      display: inline-block;
+      width: 110px;
+      flex-shrink: 0;
+    }
+
+    /* ===== 猫占い ===== */
+    .fortune {
+      max-width: 700px;
+      margin: 20px auto 60px;
+      padding: 35px 20px;
+      text-align: center;
+      background: #eadff5;
+      border-radius: 25px;
+    }
+
+    .fortune h2 {
+      margin-top: 0;
+      font-size: 30px;
+    }
+
+    #fortuneResult {
+      min-height: 80px;
+      margin: 25px 0;
+      font-size: 18px;
+      line-height: 1.8;
+    }
+
+    #fortuneButton {
+      border: none;
+      border-radius: 25px;
+      padding: 13px 30px;
+      background: #8f70ad;
+      color: white;
+      font-size: 17px;
+      cursor: pointer;
+    }
+
+    #fortuneButton:hover {
+      opacity: 0.8;
+    }
+
+    
+    .diary {
+  max-width: 700px;
+  margin: 20px auto 60px;
+  padding: 35px 25px;
+  background: #fff;
+  border-radius: 25px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.diary h2 {
+  margin-top: 0;
+  text-align: center;
+  color: #a85d3d;
+  font-size: 30px;
+}
+
+.diary-entry {
+  background: #fff8f0;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+.diary-entry h3 {
+  margin-top: 0;
+  color: #8f70ad;
+}
+
+.diary-entry p {
+  line-height: 1.8;
+}
+
+footer {
+      text-align: center;
+      padding: 25px;
+      background: #f7d9c4;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== トップ ===== -->
+  <header>
+    <h1>🐾 まお＆らんの猫日記 🐾</h1>
+    <p>我が家のかわいい猫たちを紹介します！</p>
+  </header>
+
+  <!-- ===== 猫プロフィール ===== -->
+  <section class="cats">
+
+    <!-- まおちゃん -->
+    <div class="cat-card">
+      <img src="mao.jpeg" alt="まおちゃん" class="cat-photo"> 
+
+      <h2>🐱 まおちゃん</h2>
+      <p>優しくて、少し人見知りな乙女。</p>
+
+      <button onclick="toggleDetails('maoDetails')">
+        もっと詳しく見る
+      </button>
+
+      <div class="details" id="maoDetails">
+        <p><strong>名前：</strong>まお</p>
+        <p><strong>毛色：</strong>白とキジトラ</p>
+        <p><strong>性格：</strong>やさしい、空気読む、女の子女の子してる</p>
+        <p><strong>好きなもの：</strong>隙間、かわいいおもちゃ、膝の上</p>
+        <p><strong>チャームポイント：</strong>声が可愛い、アイラインが入ってるよ！</p>
+      </div>
+    </div>
+
+    <!-- らんちゃん -->
+    <div class="cat-card">
+      <img src="ran.jpg" alt="らんちゃん" class="cat-photo">
+
+      <h2>🐈‍⬛ らんちゃん</h2>
+      <p>我が強く、甘えん坊な黒猫。</p>
+
+      <button onclick="toggleDetails('ranDetails')">
+        もっと詳しく見る
+      </button>
+
+      <div class="details" id="ranDetails">
+        <p><strong>名前：</strong>らん</p>
+        <p><strong>毛色：</strong>黒</p>
+        <p><strong>性格：</strong>まおを可愛がってたら割って入ってくる我の強さ、好奇心旺盛</p>
+        <p><strong>好きなもの：</strong>遊ぶこと、脚の間、ブラッシング</p>
+        <p><strong>チャームポイント：</strong>黒い毛並み、わがままボディー</p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ===== 猫占い ===== -->
+  <section class="fortune">
+    <h2>🔮 今日の猫占い</h2>
+    <p>ボタンを押して、今日の運勢を占ってみよう！</p>
+
+    <div id="fortuneResult">
+      ここに今日の運勢が表示されます🐾
+    </div>
+
+    <button id="fortuneButton" onclick="catFortune()">
+      猫占いをする！
+    </button>
+  </section>
+
+
+  <script>
+    // ===== プロフィールの表示・非表示 =====
+    function toggleDetails(id) {
+      const details = document.getElementById(id);
+
+      if (details.style.display === "block") {
+        details.style.display = "none";
+      } else {
+        details.style.display = "block";
+      }
+    }
+
+    // ===== 猫占い =====
+    function catFortune() {
+
+      const fortunes = [
+        {
+          result: "大吉！🌟",
+          message: "今日はまおちゃんのように、のんびり過ごすと幸運が訪れるかも！🐱"
+        },
+        {
+          result: "中吉！✨",
+          message: "らんちゃんのように好奇心を持って、新しいことに挑戦してみよう！🐈‍⬛"
+        },
+        {
+          result: "小吉！🍀",
+          message: "今日は猫とゆっくり過ごすと、心が癒されそうです。"
+        },
+        {
+          result: "大吉！🐾",
+          message: "何か嬉しいことが起こる予感！猫ちゃんにたくさん話しかけてみよう！"
+        },
+        {
+          result: "吉！☀️",
+          message: "焦らずマイペースに過ごすと良い一日になりそう！"
+        },
+        {
+          result: "凶！☔️",
+          message: "今日は無理せず、猫ちゃんに癒してもらおう！"
+        }
+        
+      ];
+
+      // まだ今日の占い結果が決まっていない場合だけ、ランダムに選ぶ
+if (!window.todayFortune) {
+  const randomNumber = Math.floor(Math.random() * fortunes.length);
+  window.todayFortune = fortunes[randomNumber];
+}
+
+// 結果を画面に表示
+const fortune = window.todayFortune;
+
+document.getElementById("fortuneResult").innerHTML =
+  "<strong>" + fortune.result + "</strong><br>" +
+  fortune.message;
+    }
+  </script>
+
+</body>
+<section class="diary">
+  <h2>🐾 今日の猫日記</h2>
+
+  <article class="diary-entry">
+    <h3>📅 2026年8月20日</h3>
+
+    <p>
+      夜ご飯の時間。
+    </p>
+
+    <p>
+      いつもは、まおとらんがそれぞれ自分の場所に座って待ち、
+      2匹とも「おすわり」をしてからご飯をもらう。
+    </p>
+
+    <p>
+      ところが今日は、まおがらんの場所にちょこんと座っていた。
+    </p>
+
+    <p>
+      らんはというと……<br>
+      「……そこ、自分の場所ですが……？」
+      と言いたそうな顔で、まおを見ていた。
+    </p>
+
+    <p>
+      いつもの場所を取られて、ちょっと困惑しているらんちゃんが可愛かった🐈‍⬛💕
+    </p>
+  </article>
+</section>
+<footer>
+    © 2026 まお＆らんの猫日記
+  </footer>
+</html>
